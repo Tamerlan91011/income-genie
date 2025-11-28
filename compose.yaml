@@ -1,0 +1,16 @@
+services: 
+  postgres:
+    container_name: db
+    image: postgres:18
+    environment:
+      POSTGRES_DB: "income-genie"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "qwe123"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes: 
+      - genie-data:/var/lib/postgresql/data
+    ports: 
+    - "5432:5432"
+
+volumes:
+  genie-data:

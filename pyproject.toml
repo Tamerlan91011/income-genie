@@ -1,0 +1,17 @@
+[project]
+name = "income-genie"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.17.2",
+    "asyncpg>=0.31.0",
+    "fastapi[standard]>=0.122.0",
+    "pandas>=2.3.3",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
+    "ruff>=0.14.6",
+    "scikit-learn>=1.7.2",
+    "sqlalchemy>=2.0.44",
+]
