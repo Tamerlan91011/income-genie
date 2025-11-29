@@ -1,16 +1,11 @@
-services: 
-  postgres:
-    container_name: db
-    image: postgres:18
+services:
+  streamlit-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
     environment:
-      POSTGRES_DB: "income-genie"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "qwe123"
-      PGDATA: "/var/lib/postgresql/data/pgdata"
-    volumes: 
-      - genie-data:/var/lib/postgresql/data
-    ports: 
-    - "5432:5432"
-
-volumes:
-  genie-data:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_LOGGER_LEVEL=debug
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
