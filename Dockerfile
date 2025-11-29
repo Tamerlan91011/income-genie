@@ -1,7 +1,5 @@
-FROM python:3.12-slim-bookworm as builder
+FROM python:3.12-slim-bookworm
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
-RUN apt-get update && apt-get install -y git
 
 ENV HOST=0.0.0.0
 ENV LISTEN_PORT 8080
@@ -9,17 +7,22 @@ EXPOSE 8080
 
 WORKDIR /app
 
-COPY pyproject.toml ./
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get -y install curl
+RUN apt-get install libgomp1
 
-RUN uv venv .venv
-RUN /bin/bash -c "source .venv/bin/activate && uv pip compile pyproject.toml > requirements.txt && uv pip install -r requirements.txt"
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --locked --no-install-project
+
+COPY . ./. 
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
 
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
-
-COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
-COPY --from=builder /app/requirements.txt ./requirements.txt
-
-COPY ./src ./src
 
 CMD ["streamlit", "run", "src/main.py", "--server.port", "8080"]

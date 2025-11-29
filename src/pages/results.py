@@ -4,7 +4,8 @@ import streamlit as st
 def page():
     st.title(":material/checklist: Результаты прогнозов")
     st.markdown("---")
-
+    st.markdown("Сюда мы указываем статистики лучших моделей")
+    st.markdown("И их результаты в таблице рейтингов")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("Model", None)
