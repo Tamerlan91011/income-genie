@@ -1,20 +1,24 @@
+import pandas as pd
 import streamlit as st
 
 
 def page():
-    st.title(":material/checklist: Результаты прогнозов")
+    st.title(":material/checklist: Результаты обучения моделей")
     st.markdown("---")
-    st.markdown("Сюда мы указываем статистики лучших моделей")
-    st.markdown("И их результаты в таблице рейтингов")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("Model", None)
-    with col2:
-        st.metric("MAE", None)
-    with col3:
-        st.metric("RMSE", None)
-    with col4:
-        st.metric("R² Score", None)
+
+    df_model_metrics = pd.read_csv("model_metrics.csv")
+    df_ensemble_metrics = pd.read_csv("ensemble_metrics.csv")
+
+    df_model_metrics = df_model_metrics.drop("Income_Groups", axis=1)
+    df_ensemble_metrics = df_ensemble_metrics.drop("Income_Groups", axis=1)
+
+    st.subheader("Здесь мы приводим статистику наших моделей в их лучшем проявлении")
+    st.dataframe(df_model_metrics)
+
+    st.subheader("А здесь мы приводим статистику работы наших моделей в ансамбле")
+    st.dataframe(df_ensemble_metrics)
 
 
-results = st.Page(page=page, title="5 Результаты", icon=":material/lab_profile:", url_path="results")
+results = st.Page(
+    page=page, title="5 Результаты", icon=":material/lab_profile:", url_path="results"
+)
