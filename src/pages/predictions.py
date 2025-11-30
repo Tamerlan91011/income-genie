@@ -40,7 +40,7 @@ def page():
                     analyzer = BankClientAnalyzer(df_results)
                     st.markdown(analyzer.get_main_stats())
                     
-                    risk_summary, risk_clients = analyzer.get_clients_with_risks()
+                    risk_clients = analyzer.get_clients_with_risks()
                     st.markdown("### 🚩 КЛИЕНТЫ, ТРЕБУЮЩИЕ ВНИМАНИЯ")
                     st.markdown("Оценки наших моделей при работе с данными клиентов сильно расходятся, что выражается в значении коэффициента вариации (CV).")
                     st.markdown("Это связано как с противоречиями в данных, так и в их отсутствии.")

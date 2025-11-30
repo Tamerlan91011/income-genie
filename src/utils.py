@@ -110,14 +110,12 @@ class BankClientAnalyzer:
 
         return "\n".join(summary)
 
-    def get_clients_with_risks(self) -> tuple[str, dict]:
+    def get_clients_with_risks(self) -> dict:
         """Генерирует сводку по крайним, рискованным случаям."""
-        summary = []
         clients: dict = {}
 
         # Флаг-случаи
         if self.critical_risk > 0:
-            summary.append("### 🚩 КЛИЕНТЫ, ТРЕБУЮЩИЕ ВНИМАНИЯ\n")
 
             critical = self.df[self.df["cv"] >= 25].sort_values("cv", ascending=False)
 
@@ -126,9 +124,7 @@ class BankClientAnalyzer:
                     f"Коэффициент вариации {row['cv']:.2f}%, прогноз ₽{row['prediction']:,.2f}"
                 )
 
-            summary.append("")
-
-        return "\n".join(summary), clients
+        return clients
 
     def get_vip_clients(self):
         clients:  dict[int, str] = {}
