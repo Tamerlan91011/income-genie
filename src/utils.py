@@ -69,15 +69,17 @@ class BankClientAnalyzer:
 
         # Основные метрики
         summary.append("### 📊 ОБЩАЯ СТАТИСТИКА\n")
-        summary.append(f"   Количество клиентов: {len(self.df)}\n")
+        summary.append(f"   **Количество клиентов**: {len(self.df)}\n")
         summary.append(
-            f"   Средний прогноз дохода: ₽{self.df['prediction'].mean():,.2f}\n"
+            f"   **Средний прогноз дохода**: ₽{self.df['prediction'].mean():,.2f}\n"
         )
-        summary.append(f"   Медиана: ₽{self.df['prediction'].median():,.2f}\n")
+        summary.append(f"   **Медиана**: ₽{self.df['prediction'].median():,.2f}\n")
         summary.append(
-            f"   Диапазон: ₽{self.df['prediction'].min():,.2f} - ₽{self.df['prediction'].max():,.2f}\n"
+            f"   **Диапазон**: ₽{self.df['prediction'].min():,.2f} - ₽{self.df['prediction'].max():,.2f}\n"
         )
-        summary.append(f"   Общая сумма походов: ₽{self.df['prediction'].sum():,.2f}\n")
+        summary.append(
+            f"   **Общая сумма прогнозируемых доходов**: ₽{self.df['prediction'].sum():,.2f}\n"
+        )
 
         # Сегментация
         summary.append("### 👥 СЕГМЕНТАЦИЯ КЛИЕНТОВ\n")
@@ -116,7 +118,6 @@ class BankClientAnalyzer:
 
         # Флаг-случаи
         if self.critical_risk > 0:
-
             critical = self.df[self.df["cv"] >= 25].sort_values("cv", ascending=False)
 
             for idx, row in critical.iterrows():
@@ -127,8 +128,8 @@ class BankClientAnalyzer:
         return clients
 
     def get_vip_clients(self):
-        clients:  dict[int, str] = {}
-        
+        clients: dict[int, str] = {}
+
         # VIP список
         if len(self.high) > 0:
             vip = self.df[self.df["prediction"] > self.q75].sort_values(
@@ -136,9 +137,9 @@ class BankClientAnalyzer:
             )
             for idx, row in vip.iterrows():
                 risk_emoji = "🟢" if row["cv"] < 12 else "🟡"
-                
+
                 clients[int(row["id"])] = (
                     f" {risk_emoji} Коэффициент вариации {row['cv']:.2f}%, прогноз ₽{row['prediction']:,.2f}"
                 )
-        
+
         return clients
