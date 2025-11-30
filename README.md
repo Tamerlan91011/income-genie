@@ -57,4 +57,5 @@ docker compose up --remove-orphans --build --force-recreate -d
 Как только контейнеры будут собраны, можно открывать браузер и в адресную строку вводить:
 ```bash
 http://localhost:8080⁠
+localhost:8080⁠ # или это, если открывается поисковик
 ```
