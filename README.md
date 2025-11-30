@@ -56,4 +56,4 @@ docker compose up --remove-orphans --build --force-recreate -d
 ## После сборки
 Как только контейнеры будут собраны, можно открывать браузер и переходить по ссылке:
 
-http://localhost:8080⁠
+[http://localhost:8080⁠](http://localhost:8080⁠)
