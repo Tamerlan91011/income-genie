@@ -9,13 +9,14 @@ from src.pages.home import home
 from src.pages.data_analysis import data_analysis
 from src.pages.model_training import model_training
 from src.pages.predictions import predictions
-from src.pages.results import results
+from pages.training_results import training_results
 
 # "1 Главная страница"
 # "2 Анализ данных"
 # "3 Обучение модели"
-# "4 Предсказание"
-# "5 Результаты"
+# "4 Результаты"
+# "5 Предсказание"
+
 
 # Custom CSS
 st.markdown("""
@@ -41,5 +42,5 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    pg = st.navigation([home, data_analysis, model_training, predictions, results])
+    pg = st.navigation([home, data_analysis, model_training, training_results, predictions])
     pg.run()

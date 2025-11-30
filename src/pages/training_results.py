@@ -19,6 +19,6 @@ def page():
     st.dataframe(df_ensemble_metrics)
 
 
-results = st.Page(
-    page=page, title="5 Результаты", icon=":material/lab_profile:", url_path="results"
+training_results = st.Page(
+    page=page, title="4 Результаты обучения", icon=":material/lab_profile:", url_path="results"
 )
