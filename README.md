@@ -59,3 +59,6 @@ docker compose up --remove-orphans --build --force-recreate -d
 http://localhost:8080⁠
 localhost:8080⁠ # или это, если открывается поисковик
 ```
+
+## Скринкаст
+Видео лежит [тут](https://drive.google.com/file/d/1g4_9YRnEmx41_Psns3UrsaO4FV6OIrvW/view?usp=drive_link)
