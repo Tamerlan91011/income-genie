@@ -4,6 +4,12 @@ import streamlit as st
 from src.core.inference import inference
 from src.utils import BankClientAnalyzer
 
+CARD_TEMPLATE = """
+    <div class="metric-card">
+        <div class="metric-title">{title}</div>
+        <div class="metric-value">{value}</div>
+    </div>
+    """
 
 def page():
     st.title(":material/search_insights: Как это работает?")

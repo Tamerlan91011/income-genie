@@ -18,6 +18,9 @@ def page():
     st.subheader("А здесь мы приводим статистику работы наших моделей в ансамбле")
     st.dataframe(df_ensemble_metrics)
 
+    st.subheader("А здесь мы показываем графики")
+
+    st.image("model_metrics_comparison.png")
 
 training_results = st.Page(
     page=page, title="4 Результаты обучения", icon=":material/lab_profile:", url_path="results"
