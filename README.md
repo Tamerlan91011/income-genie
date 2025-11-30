@@ -1,10 +1,10 @@
-# income-genie
+# Income Genie
 Виртуальный ассистент, предсказывающий доходы ваших клиентов
 
 ## Команда "Поволжские гоблины"
 - [Мокин Дмитрий](https://github.com/Dimires) - ML/DS
 - [Елсуков Сергей](https://github.com/DudeDabbler) - ML/DS
-- [Глазунов Тимур](https://github.com/Tamerlan91011) - backend 
+- [Глазунов Тимур](https://github.com/Tamerlan91011) - Backend 
 
 ## Структура проекта
 ```bash
@@ -53,6 +53,7 @@ income-genie v0.1.0
 docker compose up --remove-orphans --build --force-recreate -d
 ```
 
-## Чтобы перейти к приложению
+## После сборки
+Как только контейнеры будут собраны, можно открывать браузер и переходить по ссылке:
 
 http://localhost:8080⁠
